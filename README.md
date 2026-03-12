@@ -26,5 +26,7 @@ DOM manipulation, event handling and scope.
 ...In Progress
 
 ---
+## LiveDemo
+https://chrisiiams.github.io/minesweeper/
 *Part of my portfolio — check out the rest at [iiamsc.web2teach.de]*
 *DM me for access*
