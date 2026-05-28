@@ -4,9 +4,9 @@
 // Problem wäre dann die Größe... -- perspektivisch eigene Seite mit mehr games(snake, space invaders)?
 // Oder Pop-Up
 // oh the things to do....
-const ROWS = 9;
-const COLS = 9;
-const MINES = 10;
+const ROWS = 16;
+const COLS = 30;
+const MINES = 99;
 const colors = ['', 'blue', 'green', 'red', 'darkblue', 'darkred', 'teal', 'black', 'gray'];
 
 //den grundsätzlichen  grid erstellen
@@ -131,6 +131,24 @@ function handleClick(r, c) {
     cellDiv.textContent = grid[r][c].neighbourCount || '';
     cellDiv.style.background = '#888';
     cellDiv.style.border = '2px inset #666';
+
+    if (grid[r][c].neighbourCount === 0) {
+      const directions = [
+        [-1, -1], [-1, 0], [-1, 1],
+        [0, -1], [0, 1],
+        [1, -1], [1, 0], [1, 1],
+      ];
+      directions.forEach(([dr, dc]) => {
+        let nr = r + dr;
+        let nc = c + dc;
+        if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
+          if (!grid[nr][nc].isRevealed) {
+            handleClick(nr, nc);
+          }
+        }
+      });
+    } 
+
     if (checkWin(grid)) {
       resetGame();
       alert('Du hast gewonnen, wuhu (ง ͡ʘ ͜ʖ ͡ʘ)ง')
